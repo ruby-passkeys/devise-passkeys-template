@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-require 'devise'
 
 class Devise::Passkeys::RegistrationsController < Devise::RegistrationsController
   include Devise::Passkeys::Concerns::PasskeyReauthentication
