@@ -16,7 +16,7 @@ class Devise::Passkeys::ReauthenticationController < DeviseController
   def new_challenge
     options_for_authentication = generate_authentication_options(relying_party: relying_party, options: {allow: resource.passkeys.pluck(:external_id)})
 
-    session[passkey_reauthentication_challenge_session_key] = options_for_authentication.challenge
+    store_reauthentication_challenge_in_session(options_for_authentication: options_for_authentication)
 
     render json: options_for_authentication
   end
@@ -49,7 +49,7 @@ class Devise::Passkeys::ReauthenticationController < DeviseController
     return "#{resource_name}_current_reauthentication_challenge"
   end
 
-  def store_reauthentication_challenge_in_sessin(options_for_authentication:)
+  def store_reauthentication_challenge_in_session(options_for_authentication:)
     session[passkey_reauthentication_challenge_session_key] = options_for_authentication.challenge
   end
 
