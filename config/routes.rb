@@ -12,6 +12,18 @@ Rails.application.routes.draw do
 
     post 'reauthenticate/new_challenge', to: 'users/reauthentication#new_challenge', as: :new_user_reauthentication_challenge
     post 'reauthenticate', to: 'users/reauthentication#reauthenticate', as: :user_reauthentication
+
+    namespace :users do
+      resources :passkeys, only: [:index, :create, :destroy] do
+        collection do
+          post :new_create_challenge
+        end
+
+        member do
+          post :new_destroy_challenge
+        end
+      end
+    end
   end
 
   # Defines the root path route ("/")
