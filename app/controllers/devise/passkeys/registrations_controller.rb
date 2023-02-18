@@ -2,12 +2,15 @@
 require 'devise'
 
 class Devise::Passkeys::RegistrationsController < Devise::RegistrationsController
+  include Devise::Passkeys::Concerns::PasskeyReauthentication
   include Warden::WebAuthn::RegistrationHelpers
 
   before_action :require_no_authentication, only: [:new_challenge]
   before_action :require_email_and_passkey_label, only: [:new_challenge, :create]
   before_action :verify_passkey_registration_challenge, only: [:create]
   before_action :configure_sign_up_params, only: [:create]
+
+  before_action :verify_reauthentication_token, only: [:update, :destroy]
 
   def new_challenge
     options_for_registration = generate_registration_options(
@@ -39,6 +42,20 @@ class Devise::Passkeys::RegistrationsController < Devise::RegistrationsControlle
   end
 
   protected
+
+  def verify_reauthentication_token
+    if !valid_reauthentication_token?(given_reauthentication_token: reauthentication_params[:reauthentication_token])
+      render json: {error: find_message(:not_reauthenticated)}, status: :bad_request
+    end
+  end
+
+  def reauthentication_params
+    params.require(:user).permit(:reauthentication_token)
+  end
+
+  def update_resource(resource, params)
+    resource.update(params)
+  end
 
   # Override if you need to exclude certain external IDs
   def exclude_external_ids_for_registration
