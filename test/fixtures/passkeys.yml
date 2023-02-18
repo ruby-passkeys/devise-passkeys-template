@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  label: MyString
+  external_id: MyString
+  public_key: MyString
+  sign_count: 1
+  last_used_at: 2023-02-18 10:22:08
+
+two:
+  user: two
+  label: MyString
+  external_id: MyString
+  public_key: MyString
+  sign_count: 1
+  last_used_at: 2023-02-18 10:22:08
