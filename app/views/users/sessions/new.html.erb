@@ -1,26 +1,42 @@
 <h2>Log in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<%= form_with(
+      model: resource,
+      as: resource_name,
+      url: user_session_path,
+      data: {
+        "challenge_url": new_user_session_challenge_url,
+        "credential_field_name": "#{resource_name}[passkey_credential]"
+      }
+) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+  <fieldset>
+    <table>
+      <tr>
+        <th><%= f.label :email %></th>
+        <td><%= f.email_field :email, autofocus: true, autocomplete: "username webauthn", required: true %></td>
+      </tr>
+      <tr>
+        <th><%= f.check_box :remember_me %></th>
+        <td><%= f.label :remember_me %></td>
+      </tr>
+    </table>
+  </fieldset>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
+  <%= f.hidden_field :passkey_credential %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
+  <section>
+    <button type="submit"><%= image_tag("passkey-black.svg", width: "25", height: "25") %> Sign in</button>
+  </section>
 <% end %>
 
-<%= render "users/shared/links" %>
+<%= render "devise/shared/links" %>
+
+
+<script type="module">
+  import {startConditionalMediation, submitFormEvent} from 'session_form'
+
+  startConditionalMediation(document.querySelector('form'))
+  document.querySelector('form').addEventListener('submit', submitFormEvent)
+</script>
