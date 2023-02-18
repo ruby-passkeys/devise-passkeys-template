@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/ruby-passkeys/devise-passkeys.git
+  revision: 7617d7fdcb7bd9d7236d021cca2358611e21f49c
+  specs:
+    devise-passkeys (0.1.0)
+      devise
+      warden-webauthn
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -68,6 +76,10 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
+    android_key_attestation (0.3.0)
+    awrence (1.2.1)
+    bcrypt (3.1.18)
+    bindata (2.4.15)
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
@@ -81,12 +93,22 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    cbor (0.5.9.6)
     concurrent-ruby (1.2.0)
+    cose (1.3.0)
+      cbor (~> 0.5.9)
+      openssl-signature_algorithm (~> 1.0)
     crass (1.0.6)
     date (3.3.3)
     debug (1.7.1)
       irb (>= 1.5.0)
       reline (>= 0.3.1)
+    devise (4.9.0)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0)
+      responders
+      warden (~> 1.2.3)
     erubi (1.12.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
@@ -101,6 +123,7 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jwt (2.7.0)
     launchy (2.5.2)
       addressable (~> 2.8)
     letter_opener (1.8.1)
@@ -131,6 +154,10 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.14.2-arm64-darwin)
       racc (~> 1.4)
+    openssl (3.1.0)
+    openssl-signature_algorithm (1.3.0)
+      openssl (> 2.0)
+    orm_adapter (0.5.0)
     public_suffix (5.0.1)
     puma (5.6.5)
       nio4r (~> 2.0)
@@ -168,8 +195,13 @@ GEM
     regexp_parser (2.7.0)
     reline (0.3.2)
       io-console (~> 0.5)
+    responders (3.1.0)
+      actionpack (>= 5.2)
+      railties (>= 5.2)
     rexml (3.2.5)
     rubyzip (2.3.2)
+    safety_net_attestation (0.4.0)
+      jwt (~> 2.0)
     selenium-webdriver (4.8.1)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -184,13 +216,31 @@ GEM
     sqlite3 (1.6.0-arm64-darwin)
     thor (1.2.1)
     timeout (0.3.2)
+    tpm-key_attestation (0.12.0)
+      bindata (~> 2.4)
+      openssl (> 2.0)
+      openssl-signature_algorithm (~> 1.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    warden (1.2.9)
+      rack (>= 2.0.9)
+    warden-webauthn (0.1.0)
+      warden
+      webauthn (>= 3)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
+    webauthn (3.0.0)
+      android_key_attestation (~> 0.3.0)
+      awrence (~> 1.1)
+      bindata (~> 2.4)
+      cbor (~> 0.5.9)
+      cose (~> 1.1)
+      openssl (>= 2.2)
+      safety_net_attestation (~> 0.4.0)
+      tpm-key_attestation (~> 0.12.0)
     webdrivers (5.2.0)
       nokogiri (~> 1.6)
       rubyzip (>= 1.3.0)
@@ -205,11 +255,14 @@ GEM
 
 PLATFORMS
   arm64-darwin-21
+  arm64-darwin-22
 
 DEPENDENCIES
   bootsnap
   capybara
   debug
+  devise
+  devise-passkeys!
   importmap-rails
   jbuilder
   letter_opener
@@ -223,7 +276,7 @@ DEPENDENCIES
   webdrivers
 
 RUBY VERSION
-   ruby 3.1.1p18
+   ruby 3.2.1p31
 
 BUNDLED WITH
    2.4.6
