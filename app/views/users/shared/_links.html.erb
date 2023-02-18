@@ -23,3 +23,7 @@
     <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), data: { turbo: false } %><br />
   <% end %>
 <% end %>
+
+<% if signed_in?(resource_name) %>
+  <%= button_to "Sign Out", destroy_session_path(resource_name), method: :delete %>
+<% end %>
