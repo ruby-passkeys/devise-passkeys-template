@@ -2,6 +2,7 @@
 
 class Devise::Passkeys::ReauthenticationController < DeviseController
   include Devise::Passkeys::Concerns::PasskeyReauthentication
+  include Devise::Passkeys::Concerns::ReauthenticationChallenge
   include Warden::WebAuthn::AuthenticationInitiationHelpers
   include Warden::WebAuthn::StrategyHelpers
 
@@ -43,14 +44,6 @@ class Devise::Passkeys::ReauthenticationController < DeviseController
 
   def auth_options
     { scope: resource_name, recall: root_path }
-  end
-
-  def passkey_reauthentication_challenge_session_key
-    return "#{resource_name}_current_reauthentication_challenge"
-  end
-
-  def store_reauthentication_challenge_in_session(options_for_authentication:)
-    session[passkey_reauthentication_challenge_session_key] = options_for_authentication.challenge
   end
 
   def delete_reauthentication_challenge
