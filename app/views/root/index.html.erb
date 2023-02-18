@@ -1,2 +1,12 @@
 <h1>Root#index</h1>
-<p>Find me in app/views/root/index.html.erb</p>
+
+<%= render "users/shared/links", resource_name: :user, devise_mapping: Devise.mappings[:user] %>
+
+<h2>User details</h2>
+
+<%= link_to "Edit User", edit_registration_path(current_user) %>
+
+<code>
+<%= current_user.email %>
+<%= current_user.webauthn_id %>
+</code>
