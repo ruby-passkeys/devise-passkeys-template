@@ -41,6 +41,10 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  config.hosts << "devise-passkeys.test"
+
+  config.action_mailer.default_url_options = { host: 'devise-passkeys.test', https: true }
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 

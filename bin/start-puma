@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+
+echo "make sure to attach a debugger with (or alias): rdbg -A"
+echo "force-stopping puma-dev"
+puma-dev -stop
+echo "watching puma with: tail -f ~/Library/Logs/puma-dev.log"
+echo "============"
+tail -f ~/Library/Logs/puma-dev.log

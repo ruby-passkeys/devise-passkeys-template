@@ -1,24 +1,18 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setup
 
-Things you may want to cover:
+```
+puma-dev link -n devise-passkeys
+```
 
-* Ruby version
+## Running the server
 
-* System dependencies
+```
+bin/start-puma
+```
 
-* Configuration
+The app is now running at [https://devise-passkeys.test](https://devise-passkeys.test)
 
-* Database creation
+_Pulled from [Getting your Rails dev environment ready for passkeys](https://thomascannon.me/guides/rails-development-and-passkeys)_
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
