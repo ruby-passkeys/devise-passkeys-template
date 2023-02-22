@@ -1,10 +1,10 @@
 GIT
   remote: https://github.com/ruby-passkeys/devise-passkeys.git
-  revision: 7617d7fdcb7bd9d7236d021cca2358611e21f49c
+  revision: 3f18c426a2cd41ad7c9309fbb518667adf4b2711
   specs:
     devise-passkeys (0.1.0)
       devise
-      warden-webauthn
+      warden-webauthn (>= 0.2.0)
 
 GEM
   remote: https://rubygems.org/
@@ -224,7 +224,7 @@ GEM
       concurrent-ruby (~> 1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
-    warden-webauthn (0.1.0)
+    warden-webauthn (0.2.0)
       warden
       webauthn (>= 3)
     web-console (4.2.0)
