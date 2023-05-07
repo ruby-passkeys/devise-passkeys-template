@@ -1,11 +1,3 @@
-GIT
-  remote: https://github.com/ruby-passkeys/devise-passkeys.git
-  revision: 3f18c426a2cd41ad7c9309fbb518667adf4b2711
-  specs:
-    devise-passkeys (0.1.0)
-      devise
-      warden-webauthn (>= 0.2.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -109,6 +101,9 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-passkeys (0.1.0)
+      devise
+      warden-webauthn (>= 0.2.0)
     erubi (1.12.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
@@ -271,7 +266,7 @@ DEPENDENCIES
   capybara
   debug
   devise
-  devise-passkeys!
+  devise-passkeys
   importmap-rails
   jbuilder
   letter_opener
