@@ -37,3 +37,6 @@
 .DS_Store
 
 .env
+
+# Ignore RVM gemset file
+.ruby-gemset
