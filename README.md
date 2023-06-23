@@ -2,13 +2,19 @@
 
 ## Setup
 
-```
+```sh
 echo '3210' > ~/.puma-dev/devise-passkeys
 ```
 
 ## Running the server
 
+```sh
+./bin/dev_server
 ```
+
+_(which is a simple wrapper around):_
+
+```sh
 bundle exec rails s --port 3210
 ```
 
