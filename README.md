@@ -3,13 +3,13 @@
 ## Setup
 
 ```
-puma-dev link -n devise-passkeys
+echo '3210' > ~/.puma-dev/devise-passkeys
 ```
 
 ## Running the server
 
 ```
-bin/start-puma
+bundle exec rails s --port 3210
 ```
 
 The app is now running at [https://devise-passkeys.test](https://devise-passkeys.test)
