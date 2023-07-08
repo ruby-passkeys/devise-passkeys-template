@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :passkey_authenticatable, :registerable, :rememberable
 
-  has_many :passkeys
+  has_many :passkeys, dependent: :destroy
 
   def self.passkeys_class
     Passkey

@@ -1,8 +1,8 @@
 require "test_helper"
 
 class RootControllerTest < ActionDispatch::IntegrationTest
-  test "should get index" do
-    get root_index_url
-    assert_response :success
+  test "redirects to the sign_in" do
+    get root_url
+    assert_redirected_to new_user_session_url
   end
 end
