@@ -17,6 +17,7 @@ let getChallengeAndSubmitCredential = async function(form){
   const csrfToken = document.getElementsByName("csrf-token")[0].content;
   let credentialFieldName = form.dataset.credentialFieldName
   let newChallengeURL = new URL(form.dataset.challengeUrl)
+  let data = new FormData(form)
 
   let challengeFetch = fetch(newChallengeURL, {
     method: "POST",
@@ -24,6 +25,7 @@ let getChallengeAndSubmitCredential = async function(form){
       "Accept": "application/json",
       "X-CSRF-Token": csrfToken,
     },
+    body: data
   })
 
   const challengeJSON = await(await challengeFetch).json()
