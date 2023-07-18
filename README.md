@@ -1,20 +1,20 @@
 # README
 
 ## Prerequisites
-Install Ruby 3.2.1
-Install gems
-`bundle install`
-Install puma-dev (e.g. using homebrew on macOS/Linux)
-`brew install puma/puma/puma-dev`
-Configure some DNS settings that have to be done as root
-`sudo puma-dev -setup`
-Configure puma-dev to run in the background on ports 80 and 443 with the domain `.test`.
-`puma-dev -install`
+
+_Please use your platform's specific instructions for the below as needed._
+
+### Requirements
+
+- Ruby via the `.ruby-version`
+- The gems in the associated `Gemfile`
+- [`puma-dev`](https://github.com/puma/puma-dev) to simplify HTTPS connections (WebAuthn requires a [Secure context](https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts))
 
 
 ## Setup
-You need to run the App with Puma alongside puma-dev 
-Tell puma-dev to forward requests from https://devise-passkeys.test to 127.0.0.1:3210
+
+To have `puma-dev` proxy the requests to the foreground server (`bundle exec rails server`), you will need to specify the port to map to the test domain (see: https://github.com/puma/puma-dev#proxy-support):
+
 ```sh
 echo '3210' > ~/.puma-dev/devise-passkeys
 ```
